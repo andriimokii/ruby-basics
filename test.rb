@@ -1,0 +1,482 @@
+# this is a comment
+
+=begin
+this is a multi-line comment
+it consists of 2 lines
+=end
+
+# In ruby almost everything is an Object
+puts 3.class # => Integer
+puts "hello".class # => String
+puts "hello".method(:class).class # => Method
+
+# Basic arithmetic
+puts 1 + 1 # => 2
+puts 8 - 1 # => 7
+puts 10 * 2 # => 20
+puts 35 / 5 # => 7
+puts 2 ** 3 # => 8
+puts 5 % 3 # => 2
+
+# Bitwise operators
+puts 3 & 5 # => 1 (AND)
+puts 3 | 5 # => 7 (OR)
+puts 3 ^ 5 # => 6  (XOR)
+
+# Arithmetic is syntactic sugar
+# for calling a method on an object
+puts 1.+3 # => 4
+puts 10.5*5 # => 50
+puts 100.methods.include?(:/)
+
+# Special values are also objects
+puts nil.class # 'null' in other languages
+puts true.class # TrueClass class
+puts false.class  # FalseClass class
+
+# Equality
+puts 1==1 # True
+puts 2==1 # False
+
+# Inequality
+puts 1!=1 # False
+puts 2!=1 # True
+
+# Apart from False nil also a 'falsey' value
+puts !!nil
+puts !!false
+puts !!0
+
+# More comparison
+puts 1 < 10 # true
+puts 1 > 10 # false
+puts 2 <= 2 # true
+puts 2 >= 2 # true
+
+# Combined comparison operator
+# returns 1 when first argument greater, -1 when second argument is greater, 0 - otherwise
+puts 1 <=> 10 # -1
+puts 10 <=> 1 # 1
+puts 1 <=> 1 # 0
+
+# Logical operators
+puts true && false # false
+puts true || false # true
+
+# There are alternate versions of logical operators. They work this way:
+true and puts "Run only if first statement is true"
+false or puts "Run only if first statement is false"
+
+# String interpolation
+placeholder = 'use string interpolation'
+puts "I can #{placeholder}"
+
+# You can combine strings using '+' only with string, not with other types
+puts 'hello ' + 'world'
+puts 'hello ' + 1.to_s
+num = 2
+puts "I can #{num}"
+
+# ... or combine string with operators
+puts 'hello ' * 3
+
+# ... or append to string
+puts 'hello' << ' append string'
+
+# print with newline at end
+puts 'Newline'
+
+# ... no newline
+print 'No newline'
+puts ' ; other text'
+
+# variables
+x = y = 10
+puts "#{x} + #{y} = " + (x+y).to_s
+
+# use snake_case
+my_var_name = true
+
+# Symbols - immutable constants, internally represented as Integer nubmers.
+# Often used instead of strings and have specific, meaningful values. Example of symbol:
+puts :pending.class # => Symbol
+puts :pending == 'string' # => False
+
+# Strings could be converted to Symbols, and vice versa
+puts :pending.to_s.class.to_s + ' ' + 'string'.to_sym.class.to_s
+
+# Arrays
+array = [1, "string", true]
+print array
+
+# %w to quote values inside array
+array = %w[one two three]
+print array
+puts
+
+# Arrays could be indexed
+puts array[0] + ' ' + array.first # => one one
+puts array[12].class # NilClass, if no such index in Array
+puts array[-1] + ' ' + array.last
+print array[0,2]
+print array[0..1]
+
+# You can reverse an array
+print [1,2,3].reverse
+puts
+
+# ... or even update value of array in place. With '!'
+a = [1,2,3]
+a.reverse!
+print a
+puts a.[] 0 # array is object, [] is method. Output: 1
+
+# you can add to an arrey
+print a << 4 # => [3,2,1,4]
+
+# ... or like this
+print a.push(5) # => [3,2,1,4,5]
+
+# to check if item exists in array
+puts a.include?(2) # => true
+
+# Hashes - key/values pairs
+hash = {'color' => 'green', 'number' => 1}
+puts hash.keys # => color number
+puts hash['color'] # => green
+puts hash['test'].class # => NilClass, if no such key
+
+# we can use symbols in Hash
+hash = {:defcon => 3, :active => true}
+print hash.keys
+
+# ... or you can use alternate syntax
+hash = {defcon: 2, active: false}
+
+# check existance of key or value in hash
+puts hash.key?(:defcon)
+puts hash.value?(false)
+
+# Conditionals
+if true
+  'if statement'
+elsif false
+  'elsif statement'
+else
+  'else statement'
+end
+
+# you can use postfix if statement
+warning = 'Achtung!!!'
+puts("some warning " + warning) if !warning.empty?
+puts("some warning " + warning) unless warning.empty?
+
+# Loops
+(1..5).each do |counter|
+  puts "iteration #{counter}"
+end
+
+# ... or for, but is NOT used in Ruby
+for counter in 1..5
+  puts "hello ##{counter}"
+end
+
+# you can also use blocks in curly braces
+(1..5).each { |counter| puts "world ##{counter}" }
+
+# we can also iterate arrays and hashes
+array = [1,2,3]
+array.each_with_index do |value, index|
+  puts "arrays index is #{index}, value is #{value}"
+end
+
+hash = {'book_1' => 'Harry Potter', 'boot_2' => 'Green Elephant'}
+hash.each do |key,value|
+  puts "Key is #{key}, value is #{value}"
+end
+
+hash.each { |key,value| puts "Key is #{key}, value is #{value}" }
+
+# While loop
+counter = 1
+while counter <= 5 do
+  puts "counter value is #{counter}"
+  counter += 1
+end
+
+# Map - do something to each element in array
+array = [1,2,3,4,5]
+doubled_array = array.map { |i| i * 2 }
+puts doubled_array
+
+# also we can use it like this
+array = ["foo", "bar"]
+puts array.map(&:upcase)
+
+# Case construct
+grade = 20
+case grade
+when 0..20
+  puts 'less than 20'
+when 20..40
+  puts 'less than 40'
+else
+  puts 'Else condition'
+end
+
+# Exception handling
+begin
+  # Code here that might raise an exception
+  raise NoMemoryError, 'You are out of memory.'
+rescue NoMemoryError => e
+  puts 'There was NoMemoryError exception', e
+rescue RuntimeError => e
+  puts 'There was RuntimeError exception', e
+else
+  puts 'Some other error'
+ensure
+  puts 'Goodbye!!!'
+end
+
+# Methods
+# Methods (and blocks) implicitly return the value of the last statement
+def double(var)
+  var * 2
+end
+puts double(2)
+
+# parentheses are optional
+puts double double 2
+
+# Method arguments are separated by a comma
+def sum(x,y)
+  x + y
+end
+puts sum 3, 4 # => 7
+
+# Yield parameter
+# Every method has an implicit, optional parameter yield
+def surround
+  puts '{'
+  yield
+  puts '}'
+end
+surround { puts 'hello world!!' }
+
+# Block can be converted to 'proc' object, which wraps the block, and it could be called from another method
+def guests(&block)
+  puts block.class
+  puts block.call(4)
+end
+guests { |n| "you have #{n} guests." }
+
+def guests(*array)
+  array.each { |element| puts "This is #{element}" }
+end
+guests("Stepan", "Petro")
+
+# Map, reduce
+puts ["Stepan", "Petro"].map(&:upcase) # => STEPAN, PETRO
+puts [1,2,3].reduce(&:+) # => 6
+
+# Destructuring of arrays
+a, b, c = [1, 2, 3]
+puts b
+
+# Splat operator - to destructure an array into a list
+def best(first, second, third)
+  puts "Winners are #{first}, #{second}, #{third}"
+end
+array = ["A", "B", "C", "D", "E"]
+best *array.first(3)
+
+# ... you can also use splat operator in parameters
+def best(first, second, third, *others)
+  puts "Winners are #{first}, #{second}, #{third}."
+  puts "Number of other participants - #{others.count}"
+end
+best *array
+
+# all methods that return boolean end with question mark (?)
+puts 5.even?
+puts 5.odd?
+
+# if methods end with exclamation mark (!), it changes the value - does some destructive
+company_name = "mcdonalds"
+puts company_name.upcase
+puts company_name
+company_name.upcase!
+puts company_name
+
+# Classes
+class Human
+  # class variable - shared with all instances of this class
+  @@species = 'H. sapiens'
+
+  # Basic initializer
+  def initialize(name, age=0)
+    # assign argument value to instance variable
+    @name = name
+    @age = age
+  end
+
+  # Basic setter method
+  def name=(name)
+    @name = name
+  end
+
+  # Basic getter method
+  def name
+    @name
+  end
+
+  # ... getter and setter could be incapsulated using attr_accessor method
+  attr_accessor :name
+
+  # getter/setter methods could be also created individually
+  attr_reader :name
+  attr_writer :name
+
+  # class method uses self; i can only be called on the class, not an instance
+  def self.say(msg)
+    msg
+  end
+
+  def species
+    @@species
+  end
+end
+
+# Class initialization
+obj = Human.new("Petro", 30)
+puts obj.species + ' ' + obj.name + ' ' + Human.say("Hello world!")
+obj.name = 'Petro the First'
+puts obj.name
+
+# Variables scope is defined how we name them
+# vars with $ have Global scope
+$var = 'this is global var'
+puts defined? $var
+
+# vars with @ have Instance scope
+@var = 'this is instance var'
+puts defined? @var
+
+# vars with @@ have Class scope
+# @@var_class = 'this is class var'
+
+# Variables that start with Captal letter - constants
+Var = 'Hello world'
+puts defined? Var
+
+# Class variable shared in full Class and its descendants
+# Base Class
+class Humanoid
+  @@foo = 0
+
+  def self.foo
+    @@foo
+  end
+
+  def self.foo=(value)
+    @@foo = value
+  end
+end
+
+# Derived class
+class Worker < Humanoid
+end
+
+puts Humanoid.foo
+puts Worker.foo
+Humanoid.foo = 10
+puts Worker.foo
+
+# Instance variable is not shared in Class and its descendants
+class Humann
+  @foo = 1
+  def self.foo
+    @foo
+  end
+
+  def self.foo=(value)
+    @foo = value
+  end
+end
+
+class Doctor < Humann
+end
+
+puts Doctor.foo.class
+puts Humann.foo
+
+# Modules
+# Including modules binds their methods to the class instances
+# Extending modules binds their methods to the class itself
+module ModuleExample
+  def foo
+    'foo'
+  end
+end
+
+class Person
+  include ModuleExample
+end
+
+class Book
+  extend ModuleExample
+end
+
+p = Person.new
+puts p.foo
+puts Book.foo
+
+# Callbacks are executed when including and extending a module
+module ConcertExample
+  def self.included(base)
+    base.extend(ClassMethods)
+    base.send(:include, InstanceMethods)
+  end
+
+  module ClassMethods
+    def bar
+      'bar'
+    end
+  end
+
+  module InstanceMethods
+    def qux
+      'qux'
+    end
+  end
+end
+
+class Something
+  include ConcertExample
+end
+
+puts Something.bar
+puts Something.new.qux
+
+# END
+# you can call block with argument
+def multiply
+  yield 1
+  yield 2
+end
+
+multiply {|i| puts i * 10}
+
+# Lambda
+say_something = -> {puts 'I am saying something'}
+say_something.call
+
+# lambda with arguments
+doubled = ->(i) { puts i * 2 }
+doubled.call(2)
+
+# Proc
+# BTW: there is no dedicated Lambda class, lambda is a special Proc object
+proc = Proc.new { |i| puts i }
+proc.call(999)
+
