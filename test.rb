@@ -27,10 +27,9 @@ puts 3 ^ 5 # => 6  (XOR)
 # for calling a method on an object
 puts 1.+3 # => 4
 puts 10.5*5 # => 50
-puts 100.methods.include?(:/)
 
 # Special values are also objects
-puts nil.class # 'null' in other languages
+puts nil.class # NilClass, 'null' in other languages
 puts true.class # TrueClass class
 puts false.class  # FalseClass class
 
@@ -43,9 +42,9 @@ puts 1!=1 # False
 puts 2!=1 # True
 
 # Apart from False nil also a 'falsey' value
-puts !!nil
-puts !!false
-puts !!0
+puts !!nil # False
+puts !!false # False
+puts !!0 # False
 
 # More comparison
 puts 1 < 10 # true
@@ -64,35 +63,35 @@ puts true && false # false
 puts true || false # true
 
 # There are alternate versions of logical operators. They work this way:
-true and puts "Run only if first statement is true"
-false or puts "Run only if first statement is false"
+true and puts "Run only if first statement is true" # Run only if first statement is true
+false or puts "Run only if first statement is false" # Run only if first statement is false
 
 # String interpolation
 placeholder = 'use string interpolation'
-puts "I can #{placeholder}"
+puts "I can #{placeholder}" # I can use string interpolation
 
 # You can combine strings using '+' only with string, not with other types
-puts 'hello ' + 'world'
-puts 'hello ' + 1.to_s
+puts 'hello ' + 'world' # hello world
+puts 'hello ' + 1.to_s # hello 1
 num = 2
-puts "I can #{num}"
+puts "I can #{num}" # I can 2
 
 # ... or combine string with operators
-puts 'hello ' * 3
+puts 'hello ' * 3 # hello hello hello
 
 # ... or append to string
-puts 'hello' << ' append string'
+puts 'hello' << ' append string' # hello append string
 
 # print with newline at end
-puts 'Newline'
+puts 'Newline' # Newline\n
 
 # ... no newline
-print 'No newline'
-puts ' ; other text'
+print 'No newline' # No newline
+puts ' ; other text' # ; other text\n
 
 # variables
 x = y = 10
-puts "#{x} + #{y} = " + (x+y).to_s
+puts "#{x} + #{y} = " + (x+y).to_s # 10 + 10 = 20
 
 # use snake_case
 my_var_name = true
@@ -103,33 +102,33 @@ puts :pending.class # => Symbol
 puts :pending == 'string' # => False
 
 # Strings could be converted to Symbols, and vice versa
-puts :pending.to_s.class.to_s + ' ' + 'string'.to_sym.class.to_s
+puts :pending.to_s.class.to_s + ' ' + 'string'.to_sym.class.to_s # String Symbol
 
 # Arrays
 array = [1, "string", true]
-print array
+print array # [1, "string", true]
 
 # %w to quote values inside array
 array = %w[one two three]
-print array
+print array # ["one", "two", "three"]
 puts
 
 # Arrays could be indexed
 puts array[0] + ' ' + array.first # => one one
 puts array[12].class # NilClass, if no such index in Array
-puts array[-1] + ' ' + array.last
-print array[0,2]
-print array[0..1]
+puts array[-1] + ' ' + array.last # three three
+print array[0,2] # one two
+print array[0..1] # one two
 
 # You can reverse an array
-print [1,2,3].reverse
+print [1,2,3].reverse # [3, 2, 1]
 puts
 
 # ... or even update value of array in place. With '!'
 a = [1,2,3]
 a.reverse!
-print a
-puts a.[] 0 # array is object, [] is method. Output: 1
+print a # [3, 2, 1]
+puts a.[] 0 # array is object, [] is method. Output: 3
 
 # you can add to an arrey
 print a << 4 # => [3,2,1,4]
@@ -148,14 +147,14 @@ puts hash['test'].class # => NilClass, if no such key
 
 # we can use symbols in Hash
 hash = {:defcon => 3, :active => true}
-print hash.keys
+print hash.keys # [:defcong, :active]
 
 # ... or you can use alternate syntax
 hash = {defcon: 2, active: false}
 
 # check existance of key or value in hash
-puts hash.key?(:defcon)
-puts hash.value?(false)
+puts hash.key?(:defcon) # True
+puts hash.value?(false) # True
 
 # Conditionals
 if true
@@ -168,56 +167,56 @@ end
 
 # you can use postfix if statement
 warning = 'Achtung!!!'
-puts("some warning " + warning) if !warning.empty?
-puts("some warning " + warning) unless warning.empty?
+puts("some warning " + warning) if !warning.empty? # some warning Achtung!!!
+puts("some warning " + warning) unless warning.empty? # some warning Achtung!!!
 
 # Loops
 (1..5).each do |counter|
-  puts "iteration #{counter}"
+  puts "iteration #{counter}" # iteration 1 ... iteration 5
 end
 
 # ... or for, but is NOT used in Ruby
 for counter in 1..5
-  puts "hello ##{counter}"
+  puts "hello ##{counter}" # hello #1 ... hello #5
 end
 
 # you can also use blocks in curly braces
-(1..5).each { |counter| puts "world ##{counter}" }
+(1..5).each { |counter| puts "world ##{counter}" } # world #1 ... world #5
 
 # we can also iterate arrays and hashes
-array = [1,2,3]
+array = [1, 2, 3]
 array.each_with_index do |value, index|
-  puts "arrays index is #{index}, value is #{value}"
+  puts "arrays index is #{index}, value is #{value}" # arrays index is 0, value is 1 ... arrays index is 2, value is 3
 end
 
 hash = {'book_1' => 'Harry Potter', 'boot_2' => 'Green Elephant'}
 hash.each do |key,value|
-  puts "Key is #{key}, value is #{value}"
+  puts "Key is #{key}, value is #{value}" # Key is book_1, value is Harry Potter ... Key is boot_2, value is Green Elephant
 end
 
-hash.each { |key,value| puts "Key is #{key}, value is #{value}" }
+hash.each { |key,value| puts "Key is #{key}, value is #{value}" } # Key is book_1, value is Harry Potter ... Key is boot_2, value is Green Elephant
 
 # While loop
 counter = 1
 while counter <= 5 do
-  puts "counter value is #{counter}"
+  puts "counter value is #{counter}" # counter value is 1 ... counter value is 5
   counter += 1
 end
 
 # Map - do something to each element in array
-array = [1,2,3,4,5]
+array = [1, 2, 3, 4, 5]
 doubled_array = array.map { |i| i * 2 }
-puts doubled_array
+puts doubled_array # 2, 4, 6, 8, 10
 
 # also we can use it like this
-array = ["foo", "bar"]
-puts array.map(&:upcase)
+array = %w[foo bar]
+puts array.map(&:upcase) # FOO BAR
 
 # Case construct
 grade = 20
 case grade
 when 0..20
-  puts 'less than 20'
+  puts 'less than 20' # less than 20
 when 20..40
   puts 'less than 40'
 else
@@ -229,13 +228,13 @@ begin
   # Code here that might raise an exception
   raise NoMemoryError, 'You are out of memory.'
 rescue NoMemoryError => e
-  puts 'There was NoMemoryError exception', e
+  puts 'There was NoMemoryError exception', e # There was NoMemoryError exception, You are out of memory
 rescue RuntimeError => e
   puts 'There was RuntimeError exception', e
 else
   puts 'Some other error'
 ensure
-  puts 'Goodbye!!!'
+  puts 'Goodbye!!!' # Goodbye!!!
 end
 
 # Methods
@@ -243,13 +242,13 @@ end
 def double(var)
   var * 2
 end
-puts double(2)
+puts double(2) # 4
 
 # parentheses are optional
 puts double double 2
 
 # Method arguments are separated by a comma
-def sum(x,y)
+def sum(x, y)
   x + y
 end
 puts sum 3, 4 # => 7
@@ -261,7 +260,7 @@ def surround
   yield
   puts '}'
 end
-surround { puts 'hello world!!' }
+surround { puts 'hello world!!' } # { hello world!!! }
 
 # Block can be converted to 'proc' object, which wraps the block, and it could be called from another method
 def guests(&block)
@@ -270,6 +269,7 @@ def guests(&block)
 end
 guests { |n| "you have #{n} guests." }
 
+# Using splat '*' operator - it will convert list of arguments to an array
 def guests(*array)
   array.each { |element| puts "This is #{element}" }
 end
@@ -281,32 +281,32 @@ puts [1,2,3].reduce(&:+) # => 6
 
 # Destructuring of arrays
 a, b, c = [1, 2, 3]
-puts b
+puts b # 2
 
 # Splat operator - to destructure an array into a list
 def best(first, second, third)
-  puts "Winners are #{first}, #{second}, #{third}"
+  puts "Winners are #{first}, #{second}, #{third}" # Winner are A, B, C
 end
 array = ["A", "B", "C", "D", "E"]
 best *array.first(3)
 
 # ... you can also use splat operator in parameters
 def best(first, second, third, *others)
-  puts "Winners are #{first}, #{second}, #{third}."
-  puts "Number of other participants - #{others.count}"
+  puts "Winners are #{first}, #{second}, #{third}." # Winners are A, B, C
+  puts "Number of other participants - #{others.count}" # Number of other participants  - 3
 end
 best *array
 
 # all methods that return boolean end with question mark (?)
-puts 5.even?
-puts 5.odd?
+puts 5.even? # False
+puts 5.odd? # True
 
 # if methods end with exclamation mark (!), it changes the value - does some destructive
 company_name = "mcdonalds"
-puts company_name.upcase
-puts company_name
+puts company_name.upcase # MCDONALDS
+puts company_name # mcdonals
 company_name.upcase!
-puts company_name
+puts company_name # MCDONALDS
 
 # Classes
 class Human
@@ -314,7 +314,7 @@ class Human
   @@species = 'H. sapiens'
 
   # Basic initializer
-  def initialize(name, age=0)
+  def initialize(name, age = 0)
     # assign argument value to instance variable
     @name = name
     @age = age
@@ -337,11 +337,12 @@ class Human
   attr_reader :name
   attr_writer :name
 
-  # class method uses self; i can only be called on the class, not an instance
+  # class method uses self; it can only be called on the class, not an instance
   def self.say(msg)
     msg
   end
 
+  # getter for class variable
   def species
     @@species
   end
@@ -349,27 +350,27 @@ end
 
 # Class initialization
 obj = Human.new("Petro", 30)
-puts obj.species + ' ' + obj.name + ' ' + Human.say("Hello world!")
+puts obj.species + ' ' + obj.name + ' ' + Human.say("Hello world!") # H. sapiens Petro Hello world!
 obj.name = 'Petro the First'
-puts obj.name
+puts obj.name # Petro the First
 
 # Variables scope is defined how we name them
 # vars with $ have Global scope
 $var = 'this is global var'
-puts defined? $var
+puts defined? $var # global-variable
 
 # vars with @ have Instance scope
 @var = 'this is instance var'
-puts defined? @var
+puts defined? @var # instance-variable
 
 # vars with @@ have Class scope
 # @@var_class = 'this is class var'
 
-# Variables that start with Captal letter - constants
+# Variables that start with Capital letter = constants
 Var = 'Hello world'
-puts defined? Var
+puts defined? Var # constant
 
-# Class variable shared in full Class and its descendants
+# Class variable shared in its Class and descendants
 # Base Class
 class Humanoid
   @@foo = 0
@@ -387,10 +388,10 @@ end
 class Worker < Humanoid
 end
 
-puts Humanoid.foo
-puts Worker.foo
+puts Humanoid.foo # 0
+puts Worker.foo # 0
 Humanoid.foo = 10
-puts Worker.foo
+puts Worker.foo # 10
 
 # Instance variable is not shared in Class and its descendants
 class Humann
@@ -428,8 +429,8 @@ class Book
 end
 
 p = Person.new
-puts p.foo
-puts Book.foo
+puts p.foo # foo
+puts Book.foo # foo
 
 # Callbacks are executed when including and extending a module
 module ConcertExample
@@ -455,8 +456,8 @@ class Something
   include ConcertExample
 end
 
-puts Something.bar
-puts Something.new.qux
+puts Something.bar # bar
+puts Something.new.qux # qux
 
 # END
 # you can call block with argument
@@ -465,10 +466,10 @@ def multiply
   yield 2
 end
 
-multiply {|i| puts i * 10}
+multiply { |i| puts i * 10 }
 
 # Lambda
-say_something = -> {puts 'I am saying something'}
+say_something = -> { puts 'I am saying something' }
 say_something.call
 
 # lambda with arguments
@@ -479,4 +480,3 @@ doubled.call(2)
 # BTW: there is no dedicated Lambda class, lambda is a special Proc object
 proc = Proc.new { |i| puts i }
 proc.call(999)
-
