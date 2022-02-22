@@ -1,4 +1,4 @@
-# this is a comment
+# this is a comment, hello
 
 =begin
 this is a multi-line comment
