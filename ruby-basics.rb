@@ -26,12 +26,12 @@ puts 3 ^ 5 # => 6  (XOR)
 # Arithmetic is syntactic sugar
 # for calling a method on an object
 puts 1.+3 # => 4
-puts 10.5*5 # => 50
+puts 10.5 * 5 # => 50
 
 # Special values are also objects
 puts nil.class # NilClass, 'null' in other languages
 puts true.class # TrueClass class
-puts false.class  # FalseClass class
+puts false.class # FalseClass class
 
 # Equality
 puts 1==1 # True
@@ -96,7 +96,7 @@ puts "#{x} + #{y} = " + (x+y).to_s # 10 + 10 = 20
 # use snake_case
 my_var_name = true
 
-# Symbols - immutable constants, internally represented as Integer nubmers.
+# Symbols - immutable constants, internally represented as Integer numbers.
 # Often used instead of strings and have specific, meaningful values. Example of symbol:
 puts :pending.class # => Symbol
 puts :pending == 'string' # => False
@@ -147,7 +147,7 @@ puts hash['test'].class # => NilClass, if no such key
 
 # we can use symbols in Hash
 hash = {:defcon => 3, :active => true}
-print hash.keys # [:defcong, :active]
+print hash.keys # [:defcon, :active]
 
 # ... or you can use alternate syntax
 hash = {defcon: 2, active: false}
@@ -190,7 +190,7 @@ array.each_with_index do |value, index|
 end
 
 hash = {'book_1' => 'Harry Potter', 'boot_2' => 'Green Elephant'}
-hash.each do |key,value|
+hash.each do |key, value|
   puts "Key is #{key}, value is #{value}" # Key is book_1, value is Harry Potter ... Key is boot_2, value is Green Elephant
 end
 
